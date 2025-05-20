@@ -1,0 +1,94 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return request.auth.uid == userId;
+    }
+    
+    function isFriend(userId) {
+      return exists(/databases/$(database)/documents/users/$(request.auth.uid)/friends/$(userId));
+    }
+
+    // Users collection
+    match /users/{userId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated() && request.auth.uid == userId;
+      allow update: if isOwner(userId);
+      allow delete: if isOwner(userId);
+      
+      // User's friends subcollection
+      match /friends/{friendId} {
+        allow read: if isAuthenticated();
+        allow write: if isOwner(userId);
+      }
+    }
+
+    // Chats collection
+    match /chats/{chatId} {
+      allow read: if isAuthenticated() && 
+        (resource.data.participants[request.auth.uid] != null || 
+         resource.data.isPublic == true);
+      allow create: if isAuthenticated();
+      allow update: if isAuthenticated() && 
+        resource.data.participants[request.auth.uid] != null;
+      allow delete: if isAuthenticated() && 
+        resource.data.participants[request.auth.uid] != null;
+      
+      // Messages subcollection
+      match /messages/{messageId} {
+        allow read: if isAuthenticated() && 
+          get(/databases/$(database)/documents/chats/$(chatId)).data.participants[request.auth.uid] != null;
+        allow create: if isAuthenticated() && 
+          get(/databases/$(database)/documents/chats/$(chatId)).data.participants[request.auth.uid] != null;
+        allow update: if isAuthenticated() && 
+          resource.data.senderId == request.auth.uid;
+        allow delete: if isAuthenticated() && 
+          resource.data.senderId == request.auth.uid;
+      }
+    }
+
+    // Reels collection
+    match /reels/{reelId} {
+      allow read: if isAuthenticated() && 
+        (resource.data.creatorId == request.auth.uid || 
+         resource.data.privacy == 'public' || 
+         isFriend(resource.data.creatorId));
+      allow create: if isAuthenticated();
+      allow update: if isAuthenticated() && 
+        resource.data.creatorId == request.auth.uid;
+      allow delete: if isAuthenticated() && 
+        resource.data.creatorId == request.auth.uid;
+    }
+
+    // Stories collection
+    match /stories/{storyId} {
+      allow read: if isAuthenticated() && 
+        (resource.data.creatorId == request.auth.uid || 
+         resource.data.privacy == 'public' || 
+         isFriend(resource.data.creatorId));
+      allow create: if isAuthenticated();
+      allow update: if isAuthenticated() && 
+        resource.data.creatorId == request.auth.uid;
+      allow delete: if isAuthenticated() && 
+        resource.data.creatorId == request.auth.uid;
+    }
+
+    // Games collection
+    match /games/{gameId} {
+      allow read: if isAuthenticated() && 
+        (resource.data.players[request.auth.uid] != null || 
+         resource.data.isPublic == true);
+      allow create: if isAuthenticated();
+      allow update: if isAuthenticated() && 
+        resource.data.players[request.auth.uid] != null;
+      allow delete: if isAuthenticated() && 
+        resource.data.creatorId == request.auth.uid;
+    }
+  }
+} 

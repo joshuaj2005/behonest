@@ -1,0 +1,174 @@
+.game-room {
+  padding: 2rem 0;
+  min-height: 100vh;
+  background: #f5f5f5;
+}
+
+.game-room-title {
+  text-align: center;
+  color: #333;
+  margin-bottom: 0.5rem !important;
+  font-weight: 600 !important;
+}
+
+.game-room-subtitle {
+  text-align: center;
+  color: #666;
+  margin-bottom: 3rem !important;
+}
+
+.game-card {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  height: 100%;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.game-card.available:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.game-card.unavailable {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.game-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+.game-icon {
+  font-size: 3rem !important;
+  margin-bottom: 1rem;
+  color: #2196f3;
+}
+
+.game-name {
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+  margin-bottom: 0.5rem !important;
+  color: #333;
+}
+
+.game-description {
+  color: #666;
+  font-size: 0.9rem !important;
+}
+
+.coming-soon {
+  position: absolute;
+  top: 10px;
+  right: -10px;
+  background: #ff9800;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transform: rotate(15deg);
+}
+
+.game-dialog {
+  .MuiDialog-paper {
+    border-radius: 16px;
+    overflow: hidden;
+  }
+}
+
+.game-dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background: #2196f3;
+  color: white;
+}
+
+.game-dialog-title {
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+}
+
+.close-button {
+  color: white !important;
+}
+
+.game-dialog-content {
+  padding: 2rem !important;
+  min-height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f5f5f5;
+}
+
+/* Game-specific styles */
+.chess-board {
+  max-width: 600px;
+  margin: 0 auto;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.snake-game {
+  background: #1a1a1a;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.tic-tac-toe {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.puzzle-game {
+  max-width: 500px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .game-room {
+    padding: 16px;
+  }
+
+  .game-card-content {
+    padding: 16px;
+  }
+
+  .game-icon {
+    font-size: 36px;
+  }
+
+  .game-name {
+    font-size: 1.2rem;
+  }
+
+  .game-description {
+    font-size: 0.8rem;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .game-dialog-content {
+    background: #1a1a1a;
+    color: white;
+  }
+
+  .puzzle-game {
+    background: #2a2a2a;
+  }
+} 

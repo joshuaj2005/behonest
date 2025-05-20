@@ -1,0 +1,170 @@
+.honor-message-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.honor-message-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.honor-message-exit {
+  opacity: 1;
+}
+
+.honor-message-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.emoji-picker {
+  transition: all 0.3s ease;
+}
+
+.emoji-picker-enter {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.emoji-picker-enter-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.emoji-picker-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.emoji-picker-exit-active {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.typing-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #1976d2;
+  animation: typing-animation 1.4s infinite ease-in-out;
+}
+
+.typing-dot:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typing-animation {
+  0%, 60%, 100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-4px);
+  }
+}
+
+.message-bubble {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.message-bubble:hover {
+  transform: scale(1.02);
+}
+
+.message-reactions {
+  position: absolute;
+  bottom: -20px;
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user-message .message-reactions {
+  right: 0;
+}
+
+.ai-message .message-reactions {
+  left: 0;
+}
+
+.recording-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px;
+  background-color: #ff4444;
+  color: white;
+  border-radius: 16px;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.call-controls {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 24px;
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+
+.call-control-button {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.call-control-button:hover {
+  transform: scale(1.1);
+}
+
+.end-call {
+  background-color: #ff4444;
+}
+
+.mute-call {
+  background-color: #333;
+}
+
+.video-toggle {
+  background-color: #333;
+} 

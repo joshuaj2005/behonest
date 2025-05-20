@@ -1,0 +1,30 @@
+.chess-game {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 600px;
+  background: #f5f5f5;
+  border-radius: 8px;
+}
+
+.chess-controls {
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  height: 100%;
+  min-height: 200px;
+}
+
+@media (max-width: 960px) {
+  .chess-game {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .chess-controls {
+    margin-top: 20px;
+    width: 100%;
+  }
+} 

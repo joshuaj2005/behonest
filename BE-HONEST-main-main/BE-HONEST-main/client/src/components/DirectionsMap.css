@@ -1,0 +1,43 @@
+.directions-container {
+  padding: 20px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: #f5f5f5;
+}
+
+.directions-panel {
+  padding: 20px;
+}
+
+.directions-alert {
+  margin: 10px 0;
+}
+
+.route-info {
+  padding: 20px;
+}
+
+.map-container {
+  flex-grow: 1;
+  min-height: 400px;
+  overflow: hidden;
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+  .directions-container {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .directions-panel,
+  .route-info {
+    padding: 15px;
+  }
+
+  .map-container {
+    min-height: 300px;
+  }
+} 
